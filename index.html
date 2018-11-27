@@ -152,7 +152,7 @@
 								//need to somehow change the old space back to what the original blank space (no character on it) looks like
 								if(player1.position + spacesToMove == player2.position){
 									player1.position = player1.position; //don't move. redundant code, but is clearer 
-									rollResultText.innerHTML = "You landed on top of player 2! You aren't moving.";
+									rollResultText.innerHTML = "You aren't moving.";
 								}
 								
 								else if (player1.position + spacesToMove > 81)
@@ -320,7 +320,7 @@
 						   player2Turn : function(spacesToMove){
 						   		if(player2.position + spacesToMove == player1.position){
 									player2.position = player2.position; //don't move. redundant code, but is clearer 
-									rollResultText.innerHTML = "You landed on top of player 1! You aren't moving.";
+									rollResultText.innerHTML = "You aren't moving.";
 								}
 								else if (player2.position + spacesToMove > 81)
 								{
