@@ -1,0 +1,802 @@
+<html>
+<head>
+	<title>Chutes 'N Ladders</title>
+
+	<style>
+		#header, #outerBoard {
+			margin-left:auto;
+			margin-right:auto;
+		}
+	</style>
+
+	<script>
+			var boolPlayer1Turn = 1;
+
+			var player1 = {playerName:"Player 1",
+						   position:0, 
+						   player1Image:"",
+						   player1CheckForSpecials: function(){
+								//Green Squares
+			
+								if (player1.position == 1)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=22;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 22! ";
+								}
+								
+								if (player1.position == 4)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=13;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 13!";
+								}
+								
+								if (player1.position == 8)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=28;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 28!";
+								}
+								
+								if (player1.position == 25)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=70;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 70!";
+								}
+								
+								if (player1.position == 35)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=39;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 39!";
+								}
+									
+								if (player1.position == 46)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=65;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 65!";
+								}
+								
+								if (player1.position == 56)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=72;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 72!";
+								}
+								
+								//Red Squares
+								
+								if (player1.position == 24)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=7;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 7!";
+								}
+								
+								if (player1.position == 32)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=3;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 3";
+								}
+								
+								if (player1.position == 36)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=17;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 17!";
+								}
+								
+								if (player1.position == 55)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=37;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 37!";
+								}
+								
+								if (player1.position == 75)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=38;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 38!";
+								}
+								
+								if (player1.position == 77)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=49;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 49!";
+								}
+								
+								if (player1.position == 80)
+								{
+									currentBlock = document.getElementById( (player1.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player1.position=30;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 30!";
+								}
+								document.getElementById( player1.position.toString() ).innerHTML = "<img src='" + player1.player1Image + "'>";
+							},
+								
+						   player1Turn : function(spacesToMove){
+								//need to somehow change the old space back to what the original blank space (no character on it) looks like
+								if(player1.position + spacesToMove == player2.position){
+									player1.position = player1.position; //don't move. redundant code, but is clearer 
+									rollResultText.innerHTML = "You landed on top of player 2! You aren't moving.";
+								}
+								
+								else if (player1.position + spacesToMove > 81)
+								{
+									player1.position=player1.position;
+									rollResultText.innerHTML = "You went over! In order to win you must land exactly on square 81!";
+								}
+
+								else{
+									if(player1.position > 0){
+										currentBlock = document.getElementById( (player1.position).toString() );
+										revertName = currentBlock.id;
+										currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									}
+						   			document.getElementById( (player1.position + spacesToMove).toString() ).innerHTML = "<img src='" + player1.player1Image + "'>";
+						   			player1.position = player1.position + spacesToMove;
+									
+									player1.player1CheckForSpecials();			
+									
+									document.getElementById("currentTurnImg").src=player2.player2Image;
+									document.getElementById("nextUpImg").src=player1.player1Image;
+								}
+								checkWinner();
+						   },
+						   setPlayer1Image : function(imageNumber){
+						   		player1.player1Image = "images/player1Image"  + imageNumber + ".jpg";
+						   		displayPlayer2Images();
+						   }
+			};
+
+			//player2 object: keeps track of the player's chosen image, position, and has some helper functions
+			var player2 = {playerName:"Player 2",
+						   position:0, 
+						   player2Image:"",
+						   player2CheckForSpecials : function(){				
+								if (player2.position == 1)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=22;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 22!";
+								}
+								
+								if (player2.position == 4)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=13;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 13!";
+								}
+								
+								if (player2.position == 8)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=28;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 28";
+								}
+								
+								if (player2.position == 25)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=70;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 70!";
+								}
+								
+								if (player2.position == 35)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=39;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 39!";
+								}
+									
+								if (player2.position == 46)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=65;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 65!";
+								}
+								
+								if (player2.position == 56)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=72;
+									rollResultText.innerHTML = "You hit a ladder and climbed to square 72!";
+								}
+								
+								//Red Squares
+								
+								if (player2.position == 24)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=7;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 7!";
+								}
+								
+								if (player2.position == 32)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=3;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 3!";
+								}
+								
+								if (player2.position == 36)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=17;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 17!";
+								}
+								
+								if (player2.position == 55)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=37;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 37!";
+								}
+								
+								if (player2.position == 75)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=38;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 38!";
+								}
+								
+								if (player2.position == 77)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=49;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 49!";
+								}
+								
+								if (player2.position == 80)
+								{
+									currentBlock = document.getElementById( (player2.position).toString() );
+									revertName = currentBlock.id;
+									currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									player2.position=30;
+									rollResultText.innerHTML = "Oops! You hit a chute and fell to square 80!";
+								}
+								document.getElementById( player2.position.toString() ).innerHTML = "<img src='" + player2.player2Image + "'>";
+							},
+						   player2Turn : function(spacesToMove){
+						   		if(player2.position + spacesToMove == player1.position){
+									player2.position = player2.position; //don't move. redundant code, but is clearer 
+									rollResultText.innerHTML = "You landed on top of player 1! You aren't moving.";
+								}
+								else if (player2.position + spacesToMove > 81)
+								{
+									player2.position=player2.position;
+									rollResultText.innerHTML = "You went over! In order to win you must land exactly on square 81!";
+								}
+
+								else{
+									if(player2.position > 0){
+										currentBlock = document.getElementById( (player2.position).toString() );
+										revertName = currentBlock.id;
+										currentBlock.innerHTML = "<img src='images/" + revertName + ".jpg'>";
+									}
+						   			document.getElementById( (player2.position + spacesToMove).toString() ).innerHTML = "<img src='" + player2.player2Image + "'>";
+						   			player2.position = player2.position + spacesToMove;
+									
+									player2.player2CheckForSpecials();		//check to see if the player hits a shoot or ladder
+									
+									//set player1 image to Current Turn square
+									document.getElementById("currentTurnImg").src=player1.player1Image;
+									document.getElementById("nextUpImg").src=player2.player2Image;
+									
+								}//close else
+
+								checkWinner();
+						   },
+						   setPlayer2Image : function(imageNumber){
+						   		player2.player2Image = "images/player2Image"  + imageNumber + ".jpg";
+						   		setGameboardVisibility("unhide");
+						   }
+			};
+			
+			function checkWinner(){
+				if(player1.position == 81 || player2.position == 81){
+					winnerDance();
+				}
+			}
+
+			function winnerDance() {
+				var counter = 1;
+
+    			setStar = setInterval(function(){ 
+    				document.getElementById( (counter.toString()) ).innerHTML = "<img src='images/star.png'>";
+    				counter = counter + 1;
+    				endWinnerDance(counter);
+    			}, 
+    			200); 
+			}
+
+			function endWinnerDance(counter){
+				if(counter == 81){			//winner's image remains at finish line
+					clearInterval(setStar);
+					rollResultText.innerHTML = "GAME OVER";
+				}
+			}			
+			
+			//funciton displays the images available for Player 2 to pick
+			function displayPlayer2Images(){
+				document.getElementById("image1").innerHTML = "<img src='images/player2Image1.jpg' onclick='player2.setPlayer2Image(1)'>";
+				document.getElementById("image2").innerHTML = "<img src='images/player2Image2.jpg' onclick='player2.setPlayer2Image(2)'>";
+				document.getElementById("image3").innerHTML = "<img src='images/player2Image3.jpg' onclick='player2.setPlayer2Image(3)'>";
+				document.getElementById("instructions").innerHTML = "<p>Select an image for Player 2</p>";
+			}
+
+			//function works as a toggle for gameboard visibility (when players are choosing characters and actually playing the game)
+			function setGameboardVisibility(visibility){
+				if(visibility == "hide"){
+					gameBoard.style.visibility="hidden";
+					dieImage.style.visibility="hidden";
+					outerBoard.style.visibility="hidden";
+
+				}
+				else if(visibility == "unhide"){
+					gameBoard.style.visibility="visible";
+					dieImage.style.visibility="visible";
+					header.outerHTML = "<center><h1>Chutes (Snakes) and Ladders</h1></center>";
+					outerBoard.style.visibility="visible";
+					document.getElementById("currentTurnImg").src=player1.player1Image;
+					document.getElementById("nextUpImg").src=player2.player2Image;
+				}
+			}
+
+			//function creates the visual of a die rolling
+			function visibleDieRoll() {
+        var questionsList = [
+    {
+      text: "{w| w contains at least three 1s} Four characters",
+      correctChoiceIndex: "1110",
+    },
+    {
+      text: "{w| w starts and ends with the same symbol}. 3 characters",
+      correctChoiceIndex: "101",
+    },
+    {
+      text: "{w| the length of w is odd}. 3 characters",
+      correctChoiceIndex: "111"
+    },
+    {
+      text: "{w| w has at least three a’s and at least two b’s} 6 characters ",
+      correctChoiceIndex: "aaabbb",
+    },
+    {
+      text: "{w| w has exactly two a’s and at least two b’s} 5 characters",
+      correctChoiceIndex: "aabbb",
+    },
+  ];
+    var index = Math.floor(Math.random() * questionsList.length);
+    var answer = prompt(questionsList[index].text)
+    console.log(answer)
+
+				var counter = 0;
+				//clear the border from the last result
+				dieImage.style.border = "0px";
+
+				var randomSide = -1;
+
+    			dieRoll = setInterval(function(){ 
+            var randomSide = 0;
+            if (questionsList[index].correctChoiceIndex == answer) {
+              randomSide = questionsList[index].correctChoiceIndex.length;
+            }
+    				image = document.getElementById("dieImage");
+    				// image.src = "images/die1.gif";
+    				counter = counter + 1;
+    				checkDieRolls(counter, randomSide);
+    			}, 
+    			300); 
+			}
+
+			function checkDieRolls(counter, rollResult){
+				if(counter == 9){
+					clearInterval(dieRoll);
+					dieImage.style.border = "10px yellow solid";
+					rollResultText.innerHTML = "You advanced " + rollResult;
+
+					if(boolPlayer1Turn == 1){
+            console.log(rollResult)
+    					player1.player1Turn(rollResult);
+    					boolPlayer1Turn = 0;
+    				}
+    				else {
+              console.log("hurraj");
+              console.log(rollResult);
+    					player2.player2Turn(rollResult);
+    					boolPlayer1Turn = 1;
+    				}
+				}
+			}
+	</script>
+</head>
+
+<body onload="setGameboardVisibility('hide')">
+
+	<table id="header">
+		<tr>
+			<td id="image1">
+				<img src="images/player1Image1.jpg" onclick="player1.setPlayer1Image(1)">
+			</td>
+			<td id="image2">
+				<img src="images/player1Image2.jpg" onclick="player1.setPlayer1Image(2)">
+			</td>
+			<td id="image3">
+				<img src="images/player1Image3.jpg" onclick="player1.setPlayer1Image(3)">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" id="instructions">
+				<p>
+					Select an image for Player 1
+				</p>
+			</td>
+		</tr>
+	</table>
+
+	<table id="outerBoard" border="1">
+		<tr>
+			<td rowspan="6">
+				<table id="gameBoard" cellpadding="0">
+					<tr id="row1">
+						<td id="73">
+							<img src="images/73.jpg" onclick="dieRoll()">
+						</td>
+						<td id="74">
+							<img src="images/74.jpg">
+						</td>
+						<td id="75">
+							<img src="images/75.jpg">
+						</td>
+						<td id="76">
+							<img src="images/76.jpg">
+						</td>
+						<td id="77">
+							<img src="images/77.jpg">
+						</td>
+						<td id="78">
+							<img src="images/78.jpg">
+						</td>
+						<td id="79">
+							<img src="images/79.jpg">
+						</td>
+						<td id="80">
+							<img src="images/80.jpg">
+						</td>
+						<td id="81">
+							<img src="images/81.jpg">
+						</td>
+					</tr>
+
+					<tr id="row2">
+						<td id="72">
+							<img src="images/72.jpg">
+						</td>
+						<td id="71">
+							<img src="images/71.jpg">
+						</td>
+						<td id="70">
+							<img src="images/70.jpg">
+						</td>
+						<td id="69">
+							<img src="images/69.jpg">
+						</td>
+						<td id="68">
+							<img src="images/68.jpg">
+						</td>
+						<td id="67">
+							<img src="images/67.jpg">
+						</td>
+						<td id="66">
+							<img src="images/66.jpg">
+						</td>
+						<td id="65">
+							<img src="images/65.jpg">
+						</td>
+						<td id="64">
+							<img src="images/64.jpg">
+						</td>
+					</tr>
+
+					<tr id="row3">
+						<td id="55">
+							<img src="images/55.jpg">
+						</td>
+						<td id="56">
+							<img src="images/56.jpg">
+						</td>
+						<td id="57">
+							<img src="images/57.jpg">
+						</td>
+						<td id="58">
+							<img src="images/58.jpg">
+						</td>
+						<td id="59">
+							<img src="images/59.jpg">
+						</td>
+						<td id="60">
+							<img src="images/60.jpg">
+						</td>
+						<td id="61">
+							<img src="images/61.jpg">
+						</td>
+						<td id="62">
+							<img src="images/62.jpg">
+						</td>
+						<td id="63">
+							<img src="images/63.jpg">
+						</td>
+					</tr>
+
+					<tr id="row4">
+						<td id="54">
+							<img src="images/54.jpg">
+						</td>
+						<td id="53">
+							<img src="images/53.jpg">
+						</td>
+						<td id="52">
+							<img src="images/52.jpg">
+						</td>
+						<td id="51">
+							<img src="images/51.jpg">
+						</td>
+						<td id="50">
+							<img src="images/50.jpg">
+						</td>
+						<td id="49">
+							<img src="images/49.jpg">
+						</td>
+						<td id="48">
+							<img src="images/48.jpg">
+						</td>
+						<td id="47">
+							<img src="images/47.jpg">
+						</td>
+						<td id="46">
+							<img src="images/46.jpg">
+						</td>
+					</tr>
+
+					<tr id="row5">
+						<td id="37">
+							<img src="images/37.jpg">
+						</td>
+						<td id="38">
+							<img src="images/38.jpg">
+						</td>
+						<td id="39">
+							<img src="images/39.jpg">
+						</td>
+						<td id="40">
+							<img src="images/40.jpg">
+						</td>
+						<td id="41">
+							<img src="images/41.jpg">
+						</td>
+						<td id="42">
+							<img src="images/42.jpg">
+						</td>
+						<td id="43">
+							<img src="images/43.jpg">
+						</td>
+						<td id="44">
+							<img src="images/44.jpg">
+						</td>
+						<td id="45">
+							<img src="images/45.jpg">
+						</td>
+					</tr>
+
+					<tr id="row6">
+						<td id="36">
+							<img src="images/36.jpg">
+						</td>
+						<td id="35">
+							<img src="images/35.jpg">
+						</td>
+						<td id="34">
+							<img src="images/34.jpg">
+						</td>
+						<td id="33">
+							<img src="images/33.jpg">
+						</td>
+						<td id="32">
+							<img src="images/32.jpg">
+						</td>
+						<td id="31">
+							<img src="images/31.jpg">
+						</td>
+						<td id="30">
+							<img src="images/30.jpg">
+						</td>
+						<td id="29">
+							<img src="images/29.jpg">
+						</td>
+						<td id="28">
+							<img src="images/28.jpg">
+						</td>
+					</tr>
+
+					<tr id="row7">
+						<td id="19">
+							<img src="images/19.jpg">
+						</td>
+						<td id="20">
+							<img src="images/20.jpg">
+						</td>
+						<td id="21">
+							<img src="images/21.jpg">
+						</td>
+						<td id="22">
+							<img src="images/22.jpg">
+						</td>
+						<td id="23">
+							<img src="images/23.jpg">
+						</td>
+						<td id="24">
+							<img src="images/24.jpg">
+						</td>
+						<td id="25">
+							<img src="images/25.jpg">
+						</td>
+						<td id="26">
+							<img src="images/26.jpg">
+						</td>
+						<td id="27">
+							<img src="images/27.jpg">
+						</td>
+					</tr>
+
+					<tr id="row8">
+						<td id="18">
+							<img src="images/18.jpg">
+						</td>
+						<td id="17">
+							<img src="images/17.jpg">
+						</td>
+						<td id="16">
+							<img src="images/16.jpg">
+						</td>
+						<td id="15">
+							<img src="images/15.jpg">
+						</td>
+						<td id="14">
+							<img src="images/14.jpg">
+						</td>
+						<td id="13">
+							<img src="images/13.jpg">
+						</td>
+						<td id="12">
+							<img src="images/12.jpg">
+						</td>
+						<td id="11">
+							<img src="images/11.jpg">
+						</td>
+						<td id="10">
+							<img src="images/10.jpg">
+						</td>
+					</tr>
+
+					<tr id="row9">
+						<td id="1">
+							<img src="images/1.jpg">
+						</td>
+						<td id="2">
+							<img src="images/2.jpg">
+						</td>
+						<td id="3">
+							<img src="images/3.jpg">
+						</td>
+						<td id="4">
+							<img src="images/4.jpg">
+						</td>
+						<td id="5">
+							<img src="images/5.jpg">
+						</td>
+						<td id="6">
+							<img src="images/6.jpg">
+						</td>
+						<td id="7">
+							<img src="images/7.jpg">
+						</td>
+						<td id="8">
+							<img src="images/8.jpg">
+						</td>
+						<td id="9">
+							<img src="images/9.jpg">
+						</td>
+					</tr>
+				</table>
+			</td> <!--slot for gameboard!-->
+		</tr>
+
+		<tr>
+			<td width="150px">
+				<center>
+
+					<img id="dieImage" src="" onclick="visibleDieRoll()">
+					<button onclick="visibleDieRoll()">Guess The DFA</button>
+
+					<p id="rollResultText">
+						See the DFA result
+					</p>
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td id="currentTurn" width="150px">
+				<img id="currentTurnImg" src="">
+				Current turn
+			</td>
+		</tr>
+		<tr>
+			<td id="nextUp" width="150px">
+				<img id="nextUpImg" src="">
+				Next in line
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
